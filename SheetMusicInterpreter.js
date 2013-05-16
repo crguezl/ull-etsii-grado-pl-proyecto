@@ -34,7 +34,7 @@ function Note(f,d,o,punt){
 function InitSMR(){
     
     //Constructor
-    this.xoffset = 40;
+    this.xoffset = 40 + 3 * 35;
     this.yoffset = 80;
 
     this.progress = 0;
@@ -52,12 +52,12 @@ function InitSMR(){
     };
 
     this.drawSolClave = function(){
-	this.divisionLine();
+	//this.divisionLine();
 	var c = this.svg.path(this.claveSol);
 	c.attr("fill","#000000");
 	c.transform("s0.1 -0.1 ");
 	c.translate(-2400,2000);
-	this.progress+=2;
+	//this.progress+=2;
 
     }
 
@@ -147,6 +147,17 @@ function InitSMR(){
     	this.svg.rect( posx, this.yoffset, 6, 4*20);
     }
     
+    this.drawSost = function(note){
+	sost = this.svg.path("M215 -316c0 -9 -8 -17 -17 -17s-17 8 -17 17v151l-87 -31v-162c0 -9 -8 -17 -17 -17s-17 8 -17 17v150l-39 -13c-10 -4 -21 4 -21 15v64c0 7 5 13 11 15l49 18v164l-39 -14c-10 -4 -21 4 -21 15v65c0 7 5 13 11 15l49 17v163c0 9 8 17 17 17s17 -8 17 -17v-151l87 31v162 c0 9 8 17 17 17s17 -8 17 -17v-150l39 13c10 4 21 -4 21 -15v-64c0 -7 -5 -13 -11 -15l-49 -18v-164l39 14c10 4 21 -4 21 -15v-65c0 -7 -5 -13 -11 -15l-49 -17v-163zM181 97l-87 -30v-164l87 30v164z");
+	sost.transform("s0.05 -0.05 ");
+	sost.attr("fill","#000000");
+	posy = (this.yoffset + 5*20 - note.freq*10)*-20; 
+	posx = this.xoffset + (this.progress * this.separacion)*20;
+	console.log("altura " + posy);
+	sost.translate(200+posx,posy);//-3600
+	this.progress++;
+    }
+    
 };
 
 function InitSystem(){
@@ -156,8 +167,12 @@ function InitSystem(){
     console.log("Hola");
     
     SMR.drawSolClave();
-    SMR.drawNote(new Note("Fa",4,5,true));
+    
+    SMR.drawSost(new Note("Do",4,4,true));
+    SMR.drawNote(new Note("Do",4,4,true));
+    SMR.drawSost(new Note("Sol",4,4,true));
     SMR.drawNote(new Note("Sol",2,4,true));
+    SMR.drawSost(new Note("Mi",4,4,true));
     SMR.drawNote(new Note("Mi",4,4,true));
     SMR.drawNote(new Note("Fa",4,4,true));
     SMR.divisionLine();
