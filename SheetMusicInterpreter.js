@@ -52,7 +52,7 @@ function InitSMR(){
     };
 
     this.drawSolClave = function(){
-
+	this.divisionLine();
 	var c = this.svg.path(this.claveSol);
 	c.attr("fill","#000000");
 	c.transform("s0.1 -0.1 ");
@@ -155,7 +155,6 @@ function InitSystem(){
     SMR.drawStaff();
     console.log("Hola");
     
-    SMR.divisionLine();
     SMR.drawSolClave();
     SMR.drawNote(new Note("Fa",4,5,true));
     SMR.drawNote(new Note("Sol",2,4,true));
