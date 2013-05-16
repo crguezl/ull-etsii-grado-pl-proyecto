@@ -123,10 +123,28 @@ function InitSMR(){
     this.ligadura = function(ini,fin){
     	inicio = ini * this.separacion;
     	fina = fin * this.separacion;
-    	
-    	this.svg.path("M "+ini+" 200 C "+ (inicio-fin)/2 + " 210 " + fina + " 200 ");
-    	this.svg.path("M 100 100 (C 200 200 300 300)+");
+	medio = fina - inicio;
+	medio/=2;
+	medio+=inicio;
+	
+    	camino =  "M "+inicio+",200 ";
+	camino += "C "+ medio + ",215 "+  medio+",215 ";
+	camino += fina + ",200"
+	camino += "C "+ medio + ",220 "+  medio+",220 ";
+	camino += inicio + ",200";
+
+	console.log(camino);
+    	ligadura = this.svg.path(camino);
+	ligadura.attr("fill","#000000");
+    	//this.svg.path("M 0,0 C 100,100 300,100 300,200");
     };
+    
+    this.doubleLine = function (){
+
+    	posx = this.xoffset + this.progress * this.separacion;
+    	this.progress++;
+    	this.svg.rect( posx, this.yoffset, 6, 4*20);
+    }
     
 };
 
@@ -152,5 +170,8 @@ function InitSystem(){
     SMR.drawNote(new Note("La",1,6));
     SMR.drawNote(new Note("Re",1,6));
     SMR.drawNote(new Note("Do", 1, 5, true));
-    SMR.ligadura(1,3);
+    SMR.ligadura(4,9);
+    SMR.doubleLine();
 }
+
+
