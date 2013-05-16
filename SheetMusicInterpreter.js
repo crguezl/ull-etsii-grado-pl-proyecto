@@ -127,16 +127,17 @@ function InitSMR(){
 	medio/=2;
 	medio+=inicio;
 	
+	curvatura = 100;
+
     	camino =  "M "+inicio+",200 ";
-	camino += "C "+ medio + ",215 "+  medio+",215 ";
+	camino += "C "+ (medio-curvatura) + ",250 "+  (medio+curvatura)+",250 ";
 	camino += fina + ",200"
-	camino += "C "+ medio + ",220 "+  medio+",220 ";
+	camino += "C "+ (medio+curvatura) + ",255 "+  (medio-curvatura)+",255 ";
 	camino += inicio + ",200";
 
 	console.log(camino);
     	ligadura = this.svg.path(camino);
 	ligadura.attr("fill","#000000");
-    	//this.svg.path("M 0,0 C 100,100 300,100 300,200");
     };
     
     this.doubleLine = function (){
@@ -170,7 +171,7 @@ function InitSystem(){
     SMR.drawNote(new Note("La",1,6));
     SMR.drawNote(new Note("Re",1,6));
     SMR.drawNote(new Note("Do", 1, 5, true));
-    SMR.ligadura(4,9);
+    SMR.ligadura(4,15);
     SMR.doubleLine();
 }
 
