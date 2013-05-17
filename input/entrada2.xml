@@ -1,0 +1,28 @@
+<score>
+	<ksol2/>
+
+	<note>
+		<time>2</time>
+		<name>Sol</name>
+		<octave>4</octave>
+		<dotted/>
+	</note>
+	
+	<note>
+		<time>4</time>
+		<name>La</name>
+		<octave>4</octave>
+	</note>
+
+	<divisionline/>
+
+	<note>
+		<time>1</time>
+		<name>Re</name>
+		<octave>6</octave>
+	</note>
+
+	<divisionline/>
+
+</score>
+

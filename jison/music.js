@@ -2,58 +2,80 @@
 var music = (function(){
 var parser = {trace: function trace() { },
 yy: {},
-symbols_: {"error":2,"expressions":3,"<SCORE>":4,"clave":5,"notas":6,"line":7,"</SCORE>":8,"EOF":9,"CLAVE":10,"<NOTE>":11,"tiempo":12,"nota":13,"octava":14,"puntillo":15,"</NOTE>":16,"<DIVISIONLINE/>":17,"<TIME>":18,"NUMBER":19,"</TIME>":20,"<NAME>":21,"NOTA":22,"</NAME>":23,"<OCTAVE>":24,"</OCTAVE>":25,"<PUNTILLO/>":26,"$accept":0,"$end":1},
-terminals_: {2:"error",4:"<SCORE>",8:"</SCORE>",9:"EOF",10:"CLAVE",11:"<NOTE>",16:"</NOTE>",17:"<DIVISIONLINE/>",18:"<TIME>",19:"NUMBER",20:"</TIME>",21:"<NAME>",22:"NOTA",23:"</NAME>",24:"<OCTAVE>",25:"</OCTAVE>",26:"<PUNTILLO/>"},
-productions_: [0,[3,6],[5,1],[6,0],[6,8],[7,0],[7,1],[12,3],[13,3],[14,3],[15,1],[15,0]],
+symbols_: {"error":2,"partitura":3,"<SCORE>":4,"clave":5,"elementosLigadura":6,"</SCORE>":7,"EOF":8,"CLAVE":9,"nota":10,"bemol":11,"line":12,"doubleline":13,"compas":14,"ligadura":15,"elementos":16,"<DIVISIONLINE/>":17,"<DOUBLELINE/>":18,"<BAR>":19,"numerador":20,"denominador":21,"</BAR>":22,"<N>":23,"NUMBER":24,"</N>":25,"<D>":26,"</D>":27,"<LIGATURE>":28,"inicioLigadura":29,"</LIGATURE>":30,"<FLAT>":31,"tiempo":32,"nombreNota":33,"octava":34,"</FLAT>":35,"<NOTE>":36,"puntillo":37,"</NOTE>":38,"<TIME>":39,"</TIME>":40,"<NAME>":41,"NOTA":42,"</NAME>":43,"<OCTAVE>":44,"</OCTAVE>":45,"<DOTTED/>":46,"$accept":0,"$end":1},
+terminals_: {2:"error",4:"<SCORE>",7:"</SCORE>",8:"EOF",9:"CLAVE",17:"<DIVISIONLINE/>",18:"<DOUBLELINE/>",19:"<BAR>",22:"</BAR>",23:"<N>",24:"NUMBER",25:"</N>",26:"<D>",27:"</D>",28:"<LIGATURE>",30:"</LIGATURE>",31:"<FLAT>",35:"</FLAT>",36:"<NOTE>",38:"</NOTE>",39:"<TIME>",40:"</TIME>",41:"<NAME>",42:"NOTA",43:"</NAME>",44:"<OCTAVE>",45:"</OCTAVE>",46:"<DOTTED/>"},
+productions_: [0,[3,5],[5,1],[6,0],[6,2],[6,2],[6,2],[6,2],[6,2],[6,2],[16,0],[16,2],[16,2],[16,2],[16,2],[16,2],[12,1],[13,1],[14,4],[20,3],[21,3],[15,4],[29,0],[11,5],[10,6],[32,3],[33,3],[34,3],[37,1],[37,0]],
 performAction: function anonymous(yytext,yyleng,yylineno,yy,yystate,$$,_$
 /**/) {
 
 var $0 = $$.length - 1;
 switch (yystate) {
 case 1: 
-	  typeof console !== 'undefined' ? console.log($$[$0-5]) : print($$[$0-5]);
+	  typeof console !== 'undefined' ? console.log($$[$0-4]) : print($$[$0-4]);
 	
-	this.$ = $$[$0-4];
+	this.$ = $$[$0-3];
 	//dibujaElementos();
 	return elementos;
 	
 break;
-case 2:this.$ = $$[$0].toUpperCase();
-		//alert("clave:" + this.$);
+case 2:posicionElementoSiguiente += 3;
+		this.$ = $$[$0].toUpperCase();
 		elementos.push(hashClave(this.$));
 break;
 case 3:this.$ = {};
 break;
-case 4:
+case 10:this.$ = {};
+break;
+case 16:posicionElementoSiguiente += 1;
+		this.$ = hashLine();
+		elementos.push(this.$);
+break;
+case 17:posicionElementoSiguiente += 1;
+		this.$ = hashDoubleLine();
+		elementos.push(this.$);
+break;
+case 18://posicionElementoSiguiente += 1;
+		elementos.push(hashCompas(new Bar($$[$0-2], $$[$0-1])));
+break;
+case 19:this.$ = parseInt($$[$0-1]);
+break;
+case 20:this.$ = parseInt($$[$0-1]);
+break;
+case 21:elementos.push(hashLigadura(new Ligature($$[$0-2], posicionElementoSiguiente)));
+break;
+case 22:this.$ = posicionElementoSiguiente;
+break;
+case 23:posicionElementoSiguiente += 1;
+		var bem = hashBemol(new Note($$[$0-2], $$[$0-3], $$[$0-1]));
+		elementos.push(bem);
+		this.$ = not;
+		
+break;
+case 24:posicionElementoSiguiente += 1;
 		var not = hashNota(new Note($$[$0-3], $$[$0-4], $$[$0-2], $$[$0-1]));
 		elementos.push(not);
-		/*if (Object.keys($$[$0-6]).length != 0){
-			elementos.push($$[$0-6]);
+		/*if (Object.keys($$[$0-1]).length != 0){
+			elementos.push($$[$0-1]);
 		}*/
 		this.$ = not;
 		
 break;
-case 5:this.$ = {};
+case 25:this.$ = parseInt($$[$0-1]);
 break;
-case 6:this.$ = hashLine();
-		elementos.push(this.$);
-break;
-case 7:this.$ = parseInt($$[$0-1]);
-break;
-case 8:
-		this.$ = $$[$0-1];
+case 26:
+		this.$ = nombreNota($$[$0-1]);
 		
 break;
-case 9:this.$ = parseInt($$[$0-1]);
+case 27:this.$ = parseInt($$[$0-1]);
 break;
-case 10:this.$ = true;
+case 28:this.$ = true;
 break;
-case 11:this.$ = false;
+case 29:this.$ = false;
 break;
 }
 },
-table: [{3:1,4:[1,2]},{1:[3]},{5:3,10:[1,4]},{6:5,8:[2,3],11:[2,3],17:[2,3]},{8:[2,2],11:[2,2],17:[2,2]},{7:6,8:[2,5],11:[2,5],17:[1,7]},{8:[1,8],11:[1,9]},{8:[2,6],11:[2,6]},{9:[1,10]},{12:11,18:[1,12]},{1:[2,1]},{13:13,21:[1,14]},{19:[1,15]},{14:16,24:[1,17]},{22:[1,18]},{20:[1,19]},{15:20,16:[2,11],26:[1,21]},{19:[1,22]},{23:[1,23]},{21:[2,7]},{16:[1,24]},{16:[2,10]},{25:[1,25]},{24:[2,8]},{8:[2,4],11:[2,4],17:[2,4]},{16:[2,9],26:[2,9]}],
-defaultActions: {10:[2,1],19:[2,7],21:[2,10],23:[2,8]},
+table: [{3:1,4:[1,2]},{1:[3]},{5:3,9:[1,4]},{6:5,7:[2,3],10:6,11:7,12:8,13:9,14:10,15:11,17:[1,14],18:[1,15],19:[1,16],28:[1,17],31:[1,13],36:[1,12]},{7:[2,2],17:[2,2],18:[2,2],19:[2,2],28:[2,2],31:[2,2],36:[2,2]},{7:[1,18]},{6:19,7:[2,3],10:6,11:7,12:8,13:9,14:10,15:11,17:[1,14],18:[1,15],19:[1,16],28:[1,17],31:[1,13],36:[1,12]},{6:20,7:[2,3],10:6,11:7,12:8,13:9,14:10,15:11,17:[1,14],18:[1,15],19:[1,16],28:[1,17],31:[1,13],36:[1,12]},{6:21,7:[2,3],10:6,11:7,12:8,13:9,14:10,15:11,17:[1,14],18:[1,15],19:[1,16],28:[1,17],31:[1,13],36:[1,12]},{6:22,7:[2,3],10:6,11:7,12:8,13:9,14:10,15:11,17:[1,14],18:[1,15],19:[1,16],28:[1,17],31:[1,13],36:[1,12]},{6:23,7:[2,3],10:6,11:7,12:8,13:9,14:10,15:11,17:[1,14],18:[1,15],19:[1,16],28:[1,17],31:[1,13],36:[1,12]},{6:24,7:[2,3],10:6,11:7,12:8,13:9,14:10,15:11,17:[1,14],18:[1,15],19:[1,16],28:[1,17],31:[1,13],36:[1,12]},{32:25,39:[1,26]},{32:27,39:[1,26]},{7:[2,16],17:[2,16],18:[2,16],19:[2,16],28:[2,16],30:[2,16],31:[2,16],36:[2,16]},{7:[2,17],17:[2,17],18:[2,17],19:[2,17],28:[2,17],30:[2,17],31:[2,17],36:[2,17]},{20:28,23:[1,29]},{17:[2,22],18:[2,22],19:[2,22],29:30,30:[2,22],31:[2,22],36:[2,22]},{8:[1,31]},{7:[2,4]},{7:[2,5]},{7:[2,6]},{7:[2,7]},{7:[2,8]},{7:[2,9]},{33:32,41:[1,33]},{24:[1,34]},{33:35,41:[1,33]},{21:36,26:[1,37]},{24:[1,38]},{10:40,11:41,12:42,13:43,14:44,16:39,17:[1,14],18:[1,15],19:[1,16],30:[2,10],31:[1,13],36:[1,12]},{1:[2,1]},{34:45,44:[1,46]},{42:[1,47]},{40:[1,48]},{34:49,44:[1,46]},{22:[1,50]},{24:[1,51]},{25:[1,52]},{30:[1,53]},{10:40,11:41,12:42,13:43,14:44,16:54,17:[1,14],18:[1,15],19:[1,16],30:[2,10],31:[1,13],36:[1,12]},{10:40,11:41,12:42,13:43,14:44,16:55,17:[1,14],18:[1,15],19:[1,16],30:[2,10],31:[1,13],36:[1,12]},{10:40,11:41,12:42,13:43,14:44,16:56,17:[1,14],18:[1,15],19:[1,16],30:[2,10],31:[1,13],36:[1,12]},{10:40,11:41,12:42,13:43,14:44,16:57,17:[1,14],18:[1,15],19:[1,16],30:[2,10],31:[1,13],36:[1,12]},{10:40,11:41,12:42,13:43,14:44,16:58,17:[1,14],18:[1,15],19:[1,16],30:[2,10],31:[1,13],36:[1,12]},{37:59,38:[2,29],46:[1,60]},{24:[1,61]},{43:[1,62]},{41:[2,25]},{35:[1,63]},{7:[2,18],17:[2,18],18:[2,18],19:[2,18],28:[2,18],30:[2,18],31:[2,18],36:[2,18]},{27:[1,64]},{26:[2,19]},{7:[2,21],17:[2,21],18:[2,21],19:[2,21],28:[2,21],31:[2,21],36:[2,21]},{30:[2,11]},{30:[2,12]},{30:[2,13]},{30:[2,14]},{30:[2,15]},{38:[1,65]},{38:[2,28]},{45:[1,66]},{44:[2,26]},{7:[2,23],17:[2,23],18:[2,23],19:[2,23],28:[2,23],30:[2,23],31:[2,23],36:[2,23]},{22:[2,20]},{7:[2,24],17:[2,24],18:[2,24],19:[2,24],28:[2,24],30:[2,24],31:[2,24],36:[2,24]},{35:[2,27],38:[2,27],46:[2,27]}],
+defaultActions: {19:[2,4],20:[2,5],21:[2,6],22:[2,7],23:[2,8],24:[2,9],31:[2,1],48:[2,25],52:[2,19],54:[2,11],55:[2,12],56:[2,13],57:[2,14],58:[2,15],60:[2,28],62:[2,26],64:[2,20]},
 parseError: function parseError(str, hash) {
     throw new Error(str);
 },
@@ -166,38 +188,95 @@ parse: function parse(input) {
 	//Notas:
 	//var SMR = new InitSMR();
 	var elementos = [];
+	var posicionElementoSiguiente = 1; 
 	
 	// Devuelve un objeto hash.
-	var hashNota = function (valorNota){
+	var hashObjeto = function (valorObjeto, tipoObjeto){
 		return {
-			valor: valorNota,
-			tipo: "nota"
-		};	
-	};
-	var hashClave = function (valorClave){
-		return {
-			valor: valorClave,
-			tipo: "clave"
+			valor: valorObjeto,
+			tipo: tipoObjeto
 		};
 	};
+
+	function hashNota (valor){
+		return hashObjeto(valor, "nota");
+	}
+	function hashClave (valor){
+		return hashObjeto(valor, "clave");
+	}
 	var hashLine = function (){
 		return {
 			tipo: "linea"
-		}
+		};
+	};
+	var hashDoubleLine = function (){
+		return {
+			tipo: "dobleLinea"
+		};
+	};
+	function hashBemol (valor){
+		return hashObjeto(valor, "bemol");
 	}
-
+	function hashLigadura (valor){
+		return hashObjeto(valor, "ligadura");
+	}
+	function hashCompas (valor){
+		return hashObjeto(valor, "compas");
+	}
+	/*var hashCompas = function (n, d){
+		return {
+			numerador: n,
+			denominador: d,
+			tipo: "compas"
+		};
+	};*/
 	/*function dibujaElementos(){
 		for (var i in elementos){
 			//alert("elemento: "+elementos[i].valor.duration);
 			SMR.drawNote(elementos[i].valor);
 		}
 	}*/
-	/*function Note (nota, duracion, octava){
-		this.note = nota;
-		this.duration = duracion;
-		this.octave = octava;
-	}*/
+	
+	// Clase compás: (new Bar(n, d);)
+	function Bar (numerador, denominador){
+		this.n = numerador;
+		this.d = denominador;
+	}
+	/* Inicio es el primer objeto donde empieza la ligadura
+	   y fin es el último objeto donde termina. */
+	function Ligature (inicio, fin){
+		this.start = inicio;
+		this.end = fin;
+	}
 
+	/* Devuelve el nombre correcto de la nota para el programa 
+	    que dibuja las notas. */
+	function nombreNota (nombre){
+		nombre = nombre.toUpperCase();
+		if (nombre == "DO" || nombre == "C"){
+			return "Do";
+		}
+		if (nombre == "RE" || nombre == "D"){
+			return "Re";
+		}
+		if (nombre == "MI" || nombre == "E"){
+			return "Mi";
+		}
+		if (nombre == "FA" || nombre == "F"){
+			return "Fa";
+		}
+		if (nombre == "SOL" || nombre == "G"){
+			return "Sol";
+		}
+		if (nombre == "LA" || nombre == "A"){
+			return "La";
+		}
+		if (nombre == "SI" || nombre == "B"){
+			return "Si";
+		}	
+		return nombre;
+	}
+	
 /* generated by jison-lex 0.1.0 */
 var lexer = (function(){
 var lexer = {
@@ -371,20 +450,20 @@ options: {},
 performAction: function anonymous(yy,yy_,$avoiding_name_collisions,YY_START
 /**/) {
 
-	var notas = {DO: 'DO', RE: 'RE', MI: 'MI', FA: 'FA', SOL: 'SOL', LA: 'LA', SI: 'SI'};
-	var reserved_words = {SCORE: 'SCORE', NOTE: 'NOTE', TIME: 'TIME', OCTAVE: 'OCTAVE', E: 'E', DEF: 'DEF'};
-	//var reserved_words = {SCORE: 'SCORE', NOTE: 'NOTE', TIME: 'TIME', OCTAVE: 'OCTAVE', E: 'E', DEF: 'DEF'};
+	var notas = {DO: 'DO', RE: 'RE', MI: 'MI', FA: 'FA', SOL: 'SOL', LA: 'LA', SI: 'SI', A: 'A', B: 'B', C: 'C', D: 'D', E: 'E', F: 'F', G: 'G'};
+	var reserved_words = {SCORE: 'SCORE', NOTE: 'NOTE', TIME: 'TIME', OCTAVE: 'OCTAVE'};
 	
-	function idORrw (x) {	
+	function idORrw (x) {
+		x = x.toUpperCase();	
 	//return ((x.toUpperCase() in reserved_words)? x.toUpperCase() : 'ID');
 	//return ((x.toUpperCase() in reserved_words)? x : 'ID');
-		if (x.toUpperCase() in notas) {
+		if (x in notas) {
 			return 'NOTA';
 		}
-		if (x.toUpperCase() in reserved_words) {
-			//return x.toUpperCase();
-			return reserved_words[x.toUpperCase()];
-		} 
+		if (x in reserved_words) {
+			return x;
+			//return reserved_words[x.toUpperCase()];
+		}
 		return 'ID';
 	}
 
@@ -399,11 +478,11 @@ var YYSTATE=YY_START;
 switch($avoiding_name_collisions) {
 case 0:/* skip whitespace */
 break;
-case 1:return 19
+case 1:return 24
 break;
-case 2:return 10
+case 2:return 9
 break;
-case 3:return 10
+case 3:return 9
 break;
 case 4:return token(yy_.yytext)
 break;
@@ -413,7 +492,7 @@ case 6:return idORrw(yy_.yytext)
 break;
 case 7:return yy_.yytext
 break;
-case 8:return 9
+case 8:return 8
 break;
 case 9:return 'INVALID'
 break;

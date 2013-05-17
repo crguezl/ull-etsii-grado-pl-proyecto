@@ -4,27 +4,27 @@
 /* lexical grammar */
 
 
-%start expressions
+/*%start expressions*/
 %{
-	var notas = {DO: 'DO', RE: 'RE', MI: 'MI', FA: 'FA', SOL: 'SOL', LA: 'LA', SI: 'SI'};
+	var notas = {DO: 'DO', RE: 'RE', MI: 'MI', FA: 'FA', SOL: 'SOL', LA: 'LA', SI: 'SI', A: 'A', B: 'B', C: 'C', D: 'D', E: 'E', F: 'F', G: 'G'};
 	var reserved_words = {SCORE: 'SCORE', NOTE: 'NOTE', TIME: 'TIME', OCTAVE: 'OCTAVE'};
 	
-	function idORrw (x) {	
+	function idORrw (x) {
+		x = x.toUpperCase();	
 	//return ((x.toUpperCase() in reserved_words)? x.toUpperCase() : 'ID');
 	//return ((x.toUpperCase() in reserved_words)? x : 'ID');
-		if (x.toUpperCase() in notas) {
+		if (x in notas) {
 			return 'NOTA';
 		}
-		if (x.toUpperCase() in reserved_words) {
-			//return x.toUpperCase();
-			return reserved_words[x.toUpperCase()];
-		} 
+		if (x in reserved_words) {
+			return x;
+			//return reserved_words[x.toUpperCase()];
+		}
 		return 'ID';
 	}
 
 	function token (x) {
 		x = x.toUpperCase();
-		//if (x )
 		return x;
 	}
 	
