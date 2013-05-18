@@ -41,17 +41,23 @@ function InitSMR(){
     this.separacion = 35;
     
     this.claveSol = "M643 2c0 -102 -65 -214 -190 -248c0 -13 1 -27 1 -40c0 -46 -1 -92 -4 -138c-7 -119 -92 -227 -214 -227c-111 0 -202 92 -202 205c0 58 54 104 113 104c54 0 95 -48 95 -104c0 -52 -43 -95 -95 -95c-13 0 -27 4 -39 10c26 -47 74 -80 130 -80c100 0 166 94 172 193 c3 44 4 89 4 133v31c-31 -5 -63 -6 -79 -6c-189 0 -333 173 -333 372c0 181 134 314 254 451c-37 129 -54 211 -54 379c0 197 147 308 159 308c25 0 151 -219 151 -388c0 -150 -90 -267 -190 -380c22 -73 42 -147 61 -221h6c154 0 254 -127 254 -259zM452 -207 c66 20 124 84 124 170c0 90 -64 178 -168 192c27 -129 40 -239 44 -362zM338 -220c7 0 45 1 75 5c-4 127 -19 241 -47 372c-87 -5 -136 -62 -136 -124c0 -45 26 -92 83 -125c4 -4 7 -9 7 -14c0 -11 -9 -21 -20 -21c-15 0 -125 63 -125 186c0 90 61 178 168 198 c-16 64 -35 127 -53 190c-110 -124 -220 -249 -220 -414c0 -149 144 -253 268 -253zM409 1108c-100 -55 -162 -159 -162 -273c0 -94 27 -190 40 -236c86 102 158 209 158 342c0 77 -11 110 -36 167z";
+    this.b = "M25 44l-1 -69c0 -4 -1 -7 -1 -11c0 -22 2 -44 4 -66c46 38 96 80 96 139c0 34 -14 69 -44 69c-31 0 -53 -29 -54 -62zM-14 -136l-11 599c8 4 16 7 25 7s17 -3 25 -7l-6 -349c26 19 56 30 88 30c53 0 93 -46 93 -100c0 -82 -90 -118 -153 -169c-14 -11 -22 -32 -40 -32 c-12 0 -21 9 -21 21z";
 
     this.svg = Raphael(10,10,1000,400);
+    
+    this.array = [];
+
     //Metodos
     this.drawStaff = function(){
-	console.log(document.width );
+	
 	for( i = 0; i < 5; i++){
 	    this.svg.rect(0,this.yoffset+20*i,1000,1);
 	}
+	this.svg.rect( 20, this.yoffset, 1, 4*20);
     };
 
     this.drawSolClave = function(){
+
 	//this.divisionLine();
 	var c = this.svg.path(this.claveSol);
 	c.attr("fill","#000000");
@@ -86,32 +92,35 @@ function InitSMR(){
 	    break;
 	}
 
+	res = null;
 	//Comprobar si hay que poner línea
 	if( posy < this.yoffset-10 ){
 			 
 	    for( i = this.yoffset-20; i >= posy; i-=20 )
-		this.svg.rect(posx-15,i,30,1);
+		res = this.svg.rect(posx-15,i,30,1);
 	}
-	
+
 	if( posy > this.yoffset + 20*4+10 ){
 			 
 	    for( i = this.yoffset + 20*4+20; i <= posy; i+=20 )
-		this.svg.rect(posx-15,i,30,1);
+		res = this.svg.rect(posx-15,i,30,1);
 
 	}
 
 	if( note.puntillo ){
 		    
 	    if( (note.freq + note.octave*7)%2 != 0){ 
-		circle = this.svg.ellipse(posx +16,posy,2,2);
-		circle.attr("fill","#000000");
+		res = this.svg.ellipse(posx +16,posy,2,2);
+		res.attr("fill","#000000");
 	    }
 	    else{
-		circle = this.svg.ellipse(posx +16,posy -10,2,2);
-		circle.attr("fill","#000000");
+		res = this.svg.ellipse(posx +16,posy -10,2,2);
+		res.attr("fill","#000000");
 	    }
 		    
 	}
+
+	this.array.push(res);
     };
     
     this.divisionLine = function (){
@@ -135,7 +144,6 @@ function InitSMR(){
 	camino += "C "+ (medio+curvatura) + ",255 "+  (medio-curvatura)+",255 ";
 	camino += inicio + ",200";
 
-	console.log(camino);
     	ligadura = this.svg.path(camino);
 	ligadura.attr("fill","#000000");
     };
@@ -152,33 +160,69 @@ function InitSMR(){
 	sost.transform("s0.05 -0.05 ");
 	sost.attr("fill","#000000");
 	posy = (this.yoffset + 5*20 - note.freq*10)*-20; 
-	posx = this.xoffset + (this.progress * this.separacion)*20;
-	console.log("altura " + posy);
+	posy += 70 * 20 * (note.octave-4);
+	posx = this.xoffset + this.progress * 700;
+	//posx = this.xoffset + (this.progress * this.separacion)*20;
+	/*console.log("posx"+posx);
+	  console.log("progress"+this.progress);*/
 	sost.translate(200+posx,posy);//-3600
+	this.progress++;
+	
+    }
+
+    this.drawBem = function(note){
+	sost = this.svg.path(this.b);
+	sost.transform("s0.05 -0.05 ");
+	sost.attr("fill","#000000");
+	posy = (this.yoffset + 5*20 - note.freq*10)*-20; 
+	posy += 70 * 20 * (note.octave-4);
+	posx = this.xoffset + this.progress * 700;
+	//posx = this.xoffset + (this.progress * this.separacion)*20;
+	/*console.log("posx"+posx);
+	  console.log("progress"+this.progress);*/
+	sost.translate(1200+posx,3250+posy);//-3600
 	this.progress++;
     }
     
+    this.drawComp = function( num, den ){
+	posx = this.xoffset+this.progress*this.separacion; 
+	var t = this.svg.text(posx-5, 122, num + "\n" + den);
+	t.transform("s3 3 ");
+    }
 };
 
 function InitSystem(){
     
     var SMR = new InitSMR();
     SMR.drawStaff();
-    console.log("Hola");
-    
     SMR.drawSolClave();
+    SMR.drawBem(new Note("Si",4,4,true));
+    SMR.drawBem(new Note("Mi",4,5,true));
+    SMR.drawBem(new Note("La",4,4,true));
+    SMR.drawBem(new Note("Re",4,5,true));
+    SMR.drawBem(new Note("Sol",4,4,true));
+    SMR.drawComp(2,4);    
+
+
+    SMR.drawBem(new Note("Mi",4,5,true));
+    SMR.drawNote(new Note("Mi",4,5,true));
     
-    SMR.drawSost(new Note("Do",4,4,true));
-    SMR.drawNote(new Note("Do",4,4,true));
-    SMR.drawSost(new Note("Sol",4,4,true));
+    SMR.drawBem(new Note("Sol",4,4,true));
     SMR.drawNote(new Note("Sol",2,4,true));
-    SMR.drawSost(new Note("Mi",4,4,true));
+
+    SMR.drawBem(new Note("Mi",4,4,true));
     SMR.drawNote(new Note("Mi",4,4,true));
+    
+    SMR.drawBem(new Note("Fa",4,4,true));
     SMR.drawNote(new Note("Fa",4,4,true));
+    
+    SMR.drawBem(new Note("Fa",4,4,true));
+    SMR.drawNote(new Note("Fa",4,4,true));
+    
     SMR.divisionLine();
     SMR.drawNote(new Note("Re",4,4));
     SMR.drawNote(new Note("Si",4,4));
-    SMR.drawNote(new Note("Do",1,4));
+    SMR.drawNote(new Note("Do",1,4,true));
     SMR.drawNote(new Note("Sol",2,5));
     SMR.divisionLine();
     SMR.drawNote(new Note("Do",1,6));
@@ -187,6 +231,9 @@ function InitSystem(){
     SMR.drawNote(new Note("Do", 1, 5, true));
     SMR.ligadura(4,15);
     SMR.doubleLine();
+
+    console.log();
+
 }
 
 
