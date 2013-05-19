@@ -1,4 +1,6 @@
 
+var svg;
+
 function Note(f,d,o,punt){
     switch(f){
     case "Do":
@@ -49,9 +51,9 @@ function InitSMR(){
     this.sosts = new Array();
     this.bems = new Array();
 
-    this.svg = Raphael(10,10,1000,400);
+    svg = Raphael(10,10,1000,400);
 
-    this.fondo = this.svg.rect(0,0,1000,400);
+    this.fondo = svg.rect(0,0,1000,400);
     this.fondo.attr("fill","#FFFFFF");
     this.fondo.notes = this.notes;
     this.fondo.delta= 0;
@@ -65,15 +67,15 @@ function InitSMR(){
     this.drawStaff = function(){
 	
 	for( i = 0; i < 5; i++){
-	    this.svg.rect(0,this.yoffset+20*i,1000,1);
+	    svg.rect(0,this.yoffset+20*i,1000,1);
 	}
-	this.notes.push(this.svg.rect( 20, this.yoffset, 1, 4*20));
+	this.notes.push(svg.rect( 20, this.yoffset, 1, 4*20));
     };
 
     this.drawSolClave = function(){
 
 	//this.divisionLine();
-	var c = this.svg.path(this.claveSol);
+	var c = svg.path(this.claveSol);
 	c.attr("fill","#000000");
 	c.transform("s0.1 -0.1 t-2400,2000");
 	//c.translate(-2400,2000);
@@ -94,17 +96,17 @@ function InitSMR(){
 	
 	switch(note.duration){
 	case 1:
-	    this.notes.push(this.svg.ellipse(posx,posy,10,10));
+	    this.notes.push(svg.ellipse(posx,posy,10,10));
 	    break;
 	case 2:
-	    this.notes.push(this.svg.ellipse(posx,posy,10,10));
-	    this.notes.push(this.svg.rect(posx+10,posy-50,1,50));
+	    this.notes.push(svg.ellipse(posx,posy,10,10));
+	    this.notes.push(svg.rect(posx+10,posy-50,1,50));
 	    break;
 	case 4:
-	    circle = this.svg.ellipse(posx,posy,10,10);
+	    circle = svg.ellipse(posx,posy,10,10);
 	    circle.attr("fill","#000000");
 	    this.notes.push(circle);
-	    this.notes.push(this.svg.rect(posx+10,posy-50,1,50));
+	    this.notes.push(svg.rect(posx+10,posy-50,1,50));
 	    break;
 	}
 
@@ -113,13 +115,13 @@ function InitSMR(){
 	if( posy < this.yoffset-10 ){
 			 
 	    for( i = this.yoffset-20; i >= posy; i-=20 )
-		this.notes.push(this.svg.rect(posx-15,i,30,1));
+		this.notes.push(svg.rect(posx-15,i,30,1));
 	}
 	
 	if( posy > this.yoffset + 20*4+10 ){
 			 
 	    for( i = this.yoffset + 20*4+20; i <= posy; i+=20 )
-		this.notes.push(this.svg.rect(posx-15,i,30,1));
+		this.notes.push(svg.rect(posx-15,i,30,1));
 
 	}
 	
@@ -128,11 +130,11 @@ function InitSMR(){
 	if( note.puntillo ){
 		    
 	    if( (note.freq + note.octave*7)%2 != 0){ 
-		res = this.svg.ellipse(posx +16,posy,2,2);
+		res = svg.ellipse(posx +16,posy,2,2);
 		res.attr("fill","#000000");
 	    }
 	    else{
-		res = this.svg.ellipse(posx +16,posy -10,2,2);
+		res = svg.ellipse(posx +16,posy -10,2,2);
 		res.attr("fill","#000000");
 	    }
 		    
@@ -144,7 +146,7 @@ function InitSMR(){
     this.divisionLine = function (){
     	posx = this.xoffset + this.progress * this.separacion;
     	this.progress++;
-    	this.notes.push(this.svg.rect( posx, this.yoffset, 1, 4*20));
+    	this.notes.push(svg.rect( posx, this.yoffset, 1, 4*20));
     };
     
     this.ligadura = function(ini,fin){
@@ -162,7 +164,7 @@ function InitSMR(){
 	camino += "C "+ (medio+curvatura) + ",255 "+  (medio-curvatura)+",255 ";
 	camino += inicio + ",200";
 
-    	ligadura = this.svg.path(camino);
+    	ligadura = svg.path(camino);
 	ligadura.attr("fill","#000000");
 	this.notes.push(ligadura);
     };
@@ -171,11 +173,11 @@ function InitSMR(){
 
     	posx = this.xoffset + this.progress * this.separacion;
     	this.progress++;
-    	this.svg.rect( posx, this.yoffset, 6, 4*20);
+    	svg.rect( posx, this.yoffset, 6, 4*20);
     }
     
     this.drawSost = function(note){
-	sost = this.svg.path("M215 -316c0 -9 -8 -17 -17 -17s-17 8 -17 17v151l-87 -31v-162c0 -9 -8 -17 -17 -17s-17 8 -17 17v150l-39 -13c-10 -4 -21 4 -21 15v64c0 7 5 13 11 15l49 18v164l-39 -14c-10 -4 -21 4 -21 15v65c0 7 5 13 11 15l49 17v163c0 9 8 17 17 17s17 -8 17 -17v-151l87 31v162 c0 9 8 17 17 17s17 -8 17 -17v-150l39 13c10 4 21 -4 21 -15v-64c0 -7 -5 -13 -11 -15l-49 -18v-164l39 14c10 4 21 -4 21 -15v-65c0 -7 -5 -13 -11 -15l-49 -17v-163zM181 97l-87 -30v-164l87 30v164z");
+	sost = svg.path("M215 -316c0 -9 -8 -17 -17 -17s-17 8 -17 17v151l-87 -31v-162c0 -9 -8 -17 -17 -17s-17 8 -17 17v150l-39 -13c-10 -4 -21 4 -21 15v64c0 7 5 13 11 15l49 18v164l-39 -14c-10 -4 -21 4 -21 15v65c0 7 5 13 11 15l49 17v163c0 9 8 17 17 17s17 -8 17 -17v-151l87 31v162 c0 9 8 17 17 17s17 -8 17 -17v-150l39 13c10 4 21 -4 21 -15v-64c0 -7 -5 -13 -11 -15l-49 -18v-164l39 14c10 4 21 -4 21 -15v-65c0 -7 -5 -13 -11 -15l-49 -17v-163zM181 97l-87 -30v-164l87 30v164z");
 	sost.transform("s0.05 -0.05 ");
 	sost.attr("fill","#000000");
 	posy = (this.yoffset + 5*20 - note.freq*10)*-20; 
@@ -190,7 +192,7 @@ function InitSMR(){
     }
 
     this.drawBem = function(note){
-	sost = this.svg.path(this.b);
+	sost = svg.path(this.b);
 	sost.transform("s0.05 -0.05 ");
 	sost.attr("fill","#000000");
 	posy = (this.yoffset + 5*20 - note.freq*10)*-20; 
@@ -205,7 +207,7 @@ function InitSMR(){
     
     this.drawComp = function( num, den ){
 	posx = this.xoffset+this.progress*this.separacion; 
-	var t = this.svg.text(posx-5, 122, num + "\n" + den);
+	var t = svg.text(posx-5, 122, num + "\n" + den);
 	t.transform("s3 3 ");
 	this.compases.push(t);
     }

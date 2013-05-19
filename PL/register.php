@@ -1,26 +1,42 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <title>metro-bootstrap: Twitter Bootstrap with Metro style</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-  <link rel="stylesheet" type="text/css" href="supportCSS/css/metro-bootstrap.css">
-  </head>
+<?php
+	include ("head.php");	
+  ?>
+  
 
-
-    <style>
-        body
-        {
-			background: #FFF;
-            padding-top: 70px; /* 60px to make the container go all the way to the bottom of the topbar */
-        }
+  		 <script type="text/javascript">
 	
-    </style>
+		  function Registro(valor1,valor2){
 
-	<body >
+
+			  var parametros ={"name": valor1,"email": valor2};
+			  $.ajax({
+			 data : parametros,
+			 url : "regist.php",
+			 type :"post",
+			 
+			 beforeSend :function(){
+			 //En esta sección podemos poner un aviso de cargando. Para este ejmplo estoy poniendo el aviso dentro de un div
+			 //$("#mensajito").html("Espere...");
+			 window.alert("espera");
+			 },
+			 success:function(respuesta){
+			 //$("#mensajito").html("Datos procesados, la respuesta del PHP fue "+respuesta);
+			  window.alert("hecho");
+			 }
+			});
+			
+		  }
+		  
+
+</script>
+
+
+	<body class="body2" >
+	
+
+  
 	<div class="hero-unit">
 	<div class="row">
     <div class="span8">
@@ -80,21 +96,29 @@
     </div>
     <div class="span4">
 		
-			  <div class="control-group">
-            <label class="control-label" for="appendedInputButton">Add Nickname</label>
+			  <div class="control-group" style="text-align:right;">
+            <label class="control-label" for="appendedInputButton" >Add Nickname</label>
             <div class="controls">
               <div class="input-append">
-                <input class="span2" id="appendedInputButton" size="16" type="text"><button class="btn" type="button" style="background-color:blue; color:white;">Check name</button>
+			  <button class="btn" type="button" style="background-color:blue; color:white;">Check name</button>
+                <input id ="name" class="span2" id="appendedInputButton" size="16" type="text">
               </div>
             </div>
           </div>
 		  
-		  <div class="control-group">
-            <label class="control-label">Email</label>
-              <input class="input-medium" type="text" placeholder="@gmail  @hotmail ....">
+		  <div class="control-group" style="text-align:right;">
+            <label class="control-label" style = "display:inline;">Email</label>
+              <input id ="email" class="input-medium" type="text" placeholder="@gmail  @hotmail ...."><br/>
+			  <label class="control-label" style = "display:inline;">Password</label>
+              <input id ="password" class="input-medium" type="text" placeholder="number && letters ....">
+         
           </div>
+		  
+		
 		<div style=" text-align:center;">  
-	<button class="btn btn-success" href="#"  style="width:100;">registrarme</button>
+	<button id = "e" class="btn btn-success" onclick = "Registro($('#name').val(),$('#email').val());"  style="width:100;">registrarme</button>
+
+	<div id ="result"></div>
 	</div>
     </div>
   </div>
@@ -111,7 +135,7 @@
 
 	</body>
 	
-	<footer style=" text-align: right; padding:10px;">
-	<p>Copyright 2013 by alumnos de la ETSII</p>
-	</footer>
+	<?php
+	include ("footer.php");
+  ?>
 </html>

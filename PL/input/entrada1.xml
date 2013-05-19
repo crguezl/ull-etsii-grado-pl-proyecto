@@ -1,8 +1,10 @@
 <score>
 	<ksol2/>
-
+	
+	
+	
 	<note>
-		<time>2</time>
+		<time>2</tim
 		<name>Sol</name>
 		<octave>4</octave>
 		<puntillo/>
@@ -13,16 +15,10 @@
 		<name>La</name>
 		<octave>4</octave>
 	</note>
-
+	
 	<divisionline/>
 
-	<note>
-		<time>1</time>
-		<name>Re</name>
-		<octave>6</octave>
-	</note>
-
-	<divisionline/>
+	
 
 </score>
 

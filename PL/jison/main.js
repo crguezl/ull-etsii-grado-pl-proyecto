@@ -2,7 +2,7 @@
 
 //var SMR = new InitSMR();
 //var SMR;
-
+var result;
 $(document).ready(function() {		// .ready
    $("#fileinput").change(calculate);	//.change
 });
@@ -14,6 +14,7 @@ $(document).ready(function() {		// .ready
 }*/
 
 function calculate (evt){
+	
 	var fichero = evt.target.files[0];
 
 	//var result = music.parse($("input").val());
@@ -29,28 +30,13 @@ function calculate (evt){
 			//var result = "";
 			try {
 				//result = music.parse("Do");
-				var result = music.parse(contents);
+				result = music.parse(contents);
+				pintar(result);
+
 			
-				//__Dibujar notas:
-				var SMR = new InitSMR();
-				//SMR.drawSolClave();
-				for (var i in result){
-					//alert("result["+i+"].tipo: "+result[i].tipo);
-					switch (result[i].tipo){
-						case "nota":
-							SMR.drawNote(result[i].valor);
-							break;
-						case "linea": 
-							SMR.divisionLine();
-						case "clave":
-							SMR.drawStaff();
-							SMR.drawSolClave();
-							break;
-						default:
-							alert("Tipo incorrecto.");	
-					}
-				}
-				//__
+			//GUARDAR	
+				$("svg").appendTo("body");
+				$("svg").hide();
 			} catch (error) {
 				//alert("Entrada incorrecta");
 				alert (error);
@@ -69,3 +55,31 @@ function calculate (evt){
   }
 	
 }
+
+function show(){
+	$("svg").show();
+}
+function pintar(result){
+		//__Dibujar notas:
+		
+					var SMR = new InitSMR();
+					//SMR.drawSolClave();
+					for (var i in result){
+						//alert("result["+i+"].tipo: "+result[i].tipo);
+						switch (result[i].tipo){
+							case "nota":
+								SMR.drawNote(result[i].valor);
+								break;
+							case "linea": 
+								SMR.divisionLine();
+							case "clave":
+								SMR.drawStaff();
+								SMR.drawSolClave();
+								break;
+							default:
+								alert("Tipo incorrecto.");	
+						}
+					}
+				
+}
+
