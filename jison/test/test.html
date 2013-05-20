@@ -1,0 +1,33 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Testing</title>
+    <link rel="stylesheet" href="test.css" />
+    <script type="text/javascript" src="../music.js"></script>
+
+  </head>
+  <body>
+    <h1>Testing 
+    </h1>
+    
+    <ul id="output"></ul>
+		<script type="text/javascript" src="assert.js"></script>	
+    
+    <script type="text/javascript">
+	/*assert(r == ' 4', "'"+r+"'");
+  
+	assert(r == ' 4 a =', r);
+	*/
+
+	alert("hi");
+	var r = music.parse("<score><ksol2/><note><time>2</time><name>A</name><octave>4</octave></note></score>");
+	alert("r.length:"+r.length);
+	alert("r:tipo:"+r[0].tipo+",valor:"+r[0].valor.duration);
+	//assert(r
+    	
+
+    </script>
+      See the NetTuts+ tutorial at <a href="http://net.tutsplus.com/tutorials/javascript-ajax/quick-tip-quick-and-easy-javascript-testing-with-assert/">Quick and Easy JavaScript Testing</a>
+  </body>
+</html>
+
