@@ -181,10 +181,13 @@ function InitSMR(){
 	posy = (this.yoffset + 5*20 - note.freq*10)*-20; 
 	posy += 70 * 20 * (note.octave-4);
 	posx = this.xoffset + this.progress * 700;
+	sost.posy = posy;
+	sost.posx = posx+200;
 	//posx = this.xoffset + (this.progress * this.separacion)*20;
 	/*console.log("posx"+posx);
 	  console.log("progress"+this.progress);*/
 	sost.translate(200+posx,posy);//-3600
+	this.sosts.push(sost);
 	this.progress++;
 	
     }
@@ -196,10 +199,13 @@ function InitSMR(){
 	posy = (this.yoffset + 5*20 - note.freq*10)*-20; 
 	posy += 70 * 20 * (note.octave-4);
 	posx = this.xoffset + this.progress * 700;
+	sost.posx = 1200+posx;
+	sost.posy = 3250+posy;
 	//posx = this.xoffset + (this.progress * this.separacion)*20;
 	/*console.log("posx"+posx);
 	  console.log("progress"+this.progress);*/
 	sost.translate(1200+posx,3250+posy);//-3600
+	this.bems.push(sost);
 	this.progress++;
     }
     
@@ -226,6 +232,13 @@ function InitSMR(){
 	}
 	for( i = 0; i < this.sol.length; i++){
 	    this.sol[i].transform("s0.1 -0.1 t" +(this.delta/0.1+dx/0.1-2400)+",2000");
+	}
+	for( i = 0; i < this.sosts.length; i++){
+	    this.sosts[i].transform("s0.05 -0.05 t"+(this.delta/0.05+dx/0.05+this.sosts[i].posx)+","+this.sosts[i].posy);
+	}
+	
+	for( i = 0; i < this.bems.length; i++){
+	    this.bems[i].transform("s0.05 -0.05 t"+(this.delta/0.05+dx/0.05+this.bems[i].posx)+","+this.bems[i].posy);
 	}
 	
 	this.lastdx = dx;
@@ -255,7 +268,7 @@ function InitSystem(){
     SMR.drawBem(new Note("Mi",4,5,true));
     SMR.drawNote(new Note("Mi",4,5,true));
     
-    SMR.drawBem(new Note("Sol",4,4,true));
+    SMR.drawSost(new Note("Sol",4,4,true));
     SMR.drawNote(new Note("Sol",2,4,true));
 
     SMR.drawBem(new Note("Mi",4,4,true));
