@@ -1,0 +1,136 @@
+<score>
+	<ksol2/>
+
+	<ligature>
+	<flat>
+		<time>4</time>
+		<name>Si</name>
+		<octave>4</octave>
+	</flat>
+
+	<flat>
+		<time>4</time>
+		<name>Mi</name>
+		<octave>5</octave>
+	</flat>
+
+	<flat>
+		<time>4</time>
+		<name>Sol</name>
+		<octave>4</octave>
+	</flat>
+	
+	<bar>
+		<n>2</n>
+		<d>4</d>
+	</bar>
+
+	<flat>
+		<time>4</time>
+		<name>Mi</name>
+		<octave>5</octave>
+	</flat>
+
+	<note>
+		<time>4</time>
+		<name>Mi</name>
+		<octave>5</octave>
+		<dotted/>
+	</note>
+
+	<flat>
+		<time>2</time>
+		<name>Sol</name>
+		<octave>4</octave>
+	</flat>
+	<note>
+		<time>2</time>
+		<name>Sol</name>
+		<octave>4</octave>
+		<dotted/>
+	</note>
+
+	<flat>
+		<time>4</time>
+		<name>Mi</name>
+		<octave>4</octave>
+	</flat>
+	<note>
+		<time>4</time>
+		<name>Mi</name>
+		<octave>4</octave>
+		<dotted/>
+	</note>
+	</ligature>
+
+	<flat>
+		<time>4</time>
+		<name>Fa</name>
+		<octave>4</octave>
+	</flat>
+	<note>
+		<time>4</time>
+		<name>Fa</name>
+		<octave>4</octave>
+		<dotted/>
+	</note>
+
+	<note>
+		<time>4</time>
+		<name>Fa</name>
+		<octave>4</octave>
+		<dotted/>
+	</note>
+
+	<divisionline/>
+
+	<note>
+		<time>4</time>
+		<name>Re</name>
+		<octave>4</octave>
+	</note>
+
+	<note>
+		<time>4</time>
+		<name>Si</name>
+		<octave>4</octave>
+	</note>
+
+	<note>
+		<time>1</time>
+		<name>Do</name>
+		<octave>4</octave>
+		<dotted/>
+	</note>
+
+	<note>
+		<time>2</time>
+		<name>Sol</name>
+		<octave>5</octave>
+	</note>
+
+	<divisionline/>
+
+	<note>
+		<time>1</time>
+		<name>Do</name>
+		<octave>6</octave>
+	</note>
+
+
+	<note>
+		<time>1</time>
+		<name>Re</name>
+		<octave>6</octave>
+	</note>
+
+	<note>
+		<time>1</time>
+		<name>Do</name>
+		<octave>5</octave>
+		<dotted/>
+	</note>
+
+	<doubleline/>
+
+</score>

@@ -1,11 +1,20 @@
 <score>
 	<ksol2/>
-
+	
+	<armor>
+		<#fa5>	
+	</armor>
+	
+	<compas>
+		<n>4</n>
+		<d>4</d>
+	</compas>
+	
 	<note>
 		<time>2</time>
 		<name>Sol</name>
 		<octave>4</octave>
-		<dotted/>
+		<puntillo/>
 	</note>
 	
 	<note>
@@ -13,16 +22,10 @@
 		<name>La</name>
 		<octave>4</octave>
 	</note>
-
+	
 	<divisionline/>
 
-	<note>
-		<time>1</time>
-		<name>Re</name>
-		<octave>6</octave>
-	</note>
-
-	<divisionline/>
+	
 
 </score>
 

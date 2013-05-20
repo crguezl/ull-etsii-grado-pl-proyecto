@@ -9,19 +9,19 @@
 	<ligature>
 	<flat>
 		<time>2</time>
-		<name>Sol</name>
+		<name>G</name>
 		<octave>4</octave>
 	</flat>
 
 	<flat>
 		<time>4</time>
-		<name>Si</name>
+		<name>B</name>
 		<octave>4</octave>
 	</flat>
 
 	<note>
 		<time>2</time>
-		<name>Sol</name>
+		<name>G</name>
 		<octave>4</octave>
 		<dotted/>
 	</note>
@@ -31,7 +31,7 @@
 
 	<note>
 		<time>4</time>
-		<name>La</name>
+		<name>A</name>
 		<octave>4</octave>
 	</note>
 
@@ -39,7 +39,7 @@
 
 	<note>
 		<time>1</time>
-		<name>Re</name>
+		<name>D</name>
 		<octave>6</octave>
 	</note>
 
