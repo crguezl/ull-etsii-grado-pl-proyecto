@@ -1,5 +1,5 @@
 
-function Note(f,d,o,punt){
+function Note(f,d,o,punt,alt){
     switch(f){
     case "Do":
 	this.freq = 0;
@@ -28,7 +28,7 @@ function Note(f,d,o,punt){
     this.duration = d;
     this.octave = o;
     this.puntillo = punt;
-    
+    this.alte = alt;
 }
 
 function InitSMR(){
@@ -48,6 +48,7 @@ function InitSMR(){
     this.sol = new Array();
     this.sosts = new Array();
     this.bems = new Array();
+    this.notePosition = new Array();
 
     this.svg = Raphael(10,10,1000,400);
 
@@ -60,7 +61,7 @@ function InitSMR(){
     this.fondo.sol = this.sol;
     this.fondo.bems = this.bems;
     this.fondo.sosts = this.sosts;
-    
+        
     //Metodos
     this.drawStaff = function(){
 	
@@ -84,6 +85,17 @@ function InitSMR(){
 
     this.drawNote = function (note){
 	
+	switch(note.alte){
+	case "b":
+	this.drawBem(note);
+	break;
+	case "s":
+	this.drawSost(note);
+	break;
+	}
+
+	this.notePosition.push(this.progress);
+
 	posy = this.yoffset + 5*20 - note.freq*10;
 	posx = this.xoffset + this.progress * this.separacion;
 	
@@ -148,8 +160,8 @@ function InitSMR(){
     };
     
     this.ligadura = function(ini,fin){
-    	inicio = ini * this.separacion;
-    	fina = fin * this.separacion;
+    	inicio = this.xoffset + this.notePosition[ini] * this.separacion;
+    	fina = this.xoffset + this.notePosition[fin] * this.separacion;
 	medio = fina - inicio;
 	medio/=2;
 	medio+=inicio;
@@ -171,7 +183,7 @@ function InitSMR(){
 
     	posx = this.xoffset + this.progress * this.separacion;
     	this.progress++;
-    	this.svg.rect( posx, this.yoffset, 6, 4*20);
+    	this.notes.push(this.svg.rect( posx, this.yoffset, 6, 4*20));
     }
     
     this.drawSost = function(note){
@@ -213,6 +225,7 @@ function InitSMR(){
 	posx = this.xoffset+this.progress*this.separacion; 
 	var t = this.svg.text(posx-5, 122, num + "\n" + den);
 	t.transform("s3 3 ");
+	this.progress++;
 	this.compases.push(t);
     }
 
@@ -257,7 +270,7 @@ function InitSystem(){
     var SMR = new InitSMR();
     SMR.drawStaff();
     SMR.drawSolClave();
-    SMR.drawBem(new Note("Si",4,4,true));
+    SMR.drawBem(new Note("Si",4,4,true ));
     SMR.drawBem(new Note("Mi",4,5,true));
     SMR.drawBem(new Note("La",4,4,true));
     SMR.drawBem(new Note("Re",4,5,true));
@@ -265,20 +278,20 @@ function InitSystem(){
     SMR.drawComp(2,4);    
 
 
-    SMR.drawBem(new Note("Mi",4,5,true));
-    SMR.drawNote(new Note("Mi",4,5,true));
+    //SMR.drawBem(new Note("Mi",4,5,true));
+    SMR.drawNote(new Note("Mi",4,5,true,"b"));
     
-    SMR.drawSost(new Note("Sol",4,4,true));
-    SMR.drawNote(new Note("Sol",2,4,true));
+    //SMR.drawSost(new Note("Sol",4,4,true));
+    SMR.drawNote(new Note("Sol",2,4,true,"s"));
 
-    SMR.drawBem(new Note("Mi",4,4,true));
-    SMR.drawNote(new Note("Mi",4,4,true));
+    //    SMR.drawBem(new Note("Mi",4,4,true));
+    SMR.drawNote(new Note("Mi",4,4,true,"b"));
     
-    SMR.drawBem(new Note("Fa",4,4,true));
-    SMR.drawNote(new Note("Fa",4,4,true));
+    //SMR.drawBem(new Note("Fa",4,4,true));
+    SMR.drawNote(new Note("Fa",4,4,true,"b"));
     
-    SMR.drawBem(new Note("Fa",4,4,true));
-    SMR.drawNote(new Note("Fa",4,4,true));
+    //SMR.drawBem(new Note("Fa",4,4,true));
+    SMR.drawNote(new Note("Fa",4,4,true, "b"));
     
     SMR.divisionLine();
     SMR.drawNote(new Note("Re",4,4));
@@ -290,7 +303,9 @@ function InitSystem(){
     SMR.drawNote(new Note("La",1,6));
     SMR.drawNote(new Note("Re",1,6));
     SMR.drawNote(new Note("Do", 1, 5, true));
-    SMR.ligadura(4,15);
+    SMR.ligadura(0,2);
+    SMR.ligadura(4,9);
+
     SMR.doubleLine();
 
 }
