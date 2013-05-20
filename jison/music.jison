@@ -167,7 +167,7 @@ compas
 
 numerador
 	: '<N>' NUMBER '</N>'
-		{$$ = parseInt($2);}
+		{$$ = parseInt($2); }
 	;
 
 denominador
