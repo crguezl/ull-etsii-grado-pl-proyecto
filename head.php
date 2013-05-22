@@ -29,7 +29,6 @@
 	
 
 	<script type="text/javaScript" src="./supportJS/jquery.js"></script>
-<<<<<<< HEAD
 	<script language="JavaScript" src ="./consultas/Consultas.js"></script>
 	<script type="text/javascript" src="jison/main.js"></script>
 	<script type="text/javascript" src="jison/music.js"></script>
@@ -37,13 +36,4 @@
 	<script type="text/javascript" src="./supportJS/SheetMusicInterpreter.js"></script>
 	<script language="JavaScript" src ="./supportJS/playSound.js"></script>
 	
-=======
-	<script type="text/javascript" src="jison/main.js"></script>
-	<script type="text/javascript" src="jison/music.js"></script>
-	
-	
-	<script type="text/javascript" src="./supportJS/raphael-min.js"></script>
-	<script type="text/javascript" src="./supportJS/SheetMusicInterpreter.js"></script>
-	<script language="JavaScript" src ="./supportJS/playSound.js"></script>
->>>>>>> 757d2294c4ea3d88af28934e6368bdbe51fa8a86
 </head>
