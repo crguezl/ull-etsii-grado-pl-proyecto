@@ -1,0 +1,49 @@
+<score>
+	<ksol2/>
+
+	<bar>
+		<n>4</n>
+		<d>4</d>
+	</bar>
+
+	<ligature>
+	<flat>
+		<time>2</time>
+		<name>G</name>
+		<octave>4</octave>
+	</flat>
+
+	<flat>
+		<time>4</time>
+		<name>B</name>
+		<octave>4</octave>
+	</flat>
+
+	<note>
+		<time>2</time>
+		<name>G</name>
+		<octave>4</octave>
+		<dotted/>
+	</note>
+	</ligature>
+
+	<divisionline/>
+
+	<note>
+		<time>4</time>
+		<name>A</name>
+		<octave>4</octave>
+	</note>
+
+	<divisionline/>
+
+	<note>
+		<time>1</time>
+		<name>D</name>
+		<octave>6</octave>
+	</note>
+
+
+	<doubleline/>
+
+</score>

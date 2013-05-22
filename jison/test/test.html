@@ -1,0 +1,35 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Testing</title>
+    <link rel="stylesheet" href="test.css" />
+		<script type="text/javascript" src="../music.js"></script>
+		<script type="text/javascript" src="../../notes/lib/raphael-min.js"></script>
+		<script type="text/javascript" src="../../notes/SheetMusicInterpreter.js"></script>
+
+  </head>
+  <body>
+    <h1>Testing 
+    </h1>
+    
+    <ul id="output"></ul>
+		<script type="text/javascript" src="assert.js"></script>	
+    
+    <script type="text/javascript">
+
+			var entrada = "<score> <ksol2/> <note> <time>2</time> <name>A</name> <octave>4</octave> </note> </score>";
+			var r = music.parse(entrada);
+			assert(entrada == entrada, entrada);
+			assert(r.length == 2, "r.length == 2");
+			assert(r[0].tipo == "clave", "r[0].tipo == clave");
+			assert(r[1].tipo == "nota", "r[1].tipo == nota");
+			assert(r[1].valor.duration == 2, "r[1].valor.duration == 2");
+			assert(r[1].valor.freq == 5, "r[1].valor.freq == "+r[1].valor.freq);
+			assert(r[1].valor.octave == 4, "r[1].valor.octave == 4");
+			assert(r[1].valor.puntillo == false, "r[1].valor.octave == "+r[1].valor.puntillo);
+
+    </script>
+		<!--See the NetTuts+ tutorial at <a href="http://net.tutsplus.com/tutorials/javascript-ajax/quick-tip-quick-and-easy-javascript-testing-with-assert/">Quick and Easy JavaScript Testing</a>-->
+  </body>
+</html>
+
