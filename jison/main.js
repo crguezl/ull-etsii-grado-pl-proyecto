@@ -1,6 +1,7 @@
 // main Jison
 
 $(document).ready(function() {		// .ready
+<<<<<<< HEAD
    $("#zonaSubirText").change(calculate);	//.change
 });
 
@@ -28,6 +29,11 @@ function show(){
 	$("svg").show();
 }
 
+=======
+   $("#fileinput").change(calculate);	//.change
+});
+
+>>>>>>> 757d2294c4ea3d88af28934e6368bdbe51fa8a86
 function calculate (evt){
 	var fichero = evt.target.files[0];
 	
@@ -42,8 +48,12 @@ function calculate (evt){
 			try {
 				//result = music.parse("Do");
 				var result = music.parse(contents);
+<<<<<<< HEAD
 				 var e = contents.toString();
 				UploadPentagrama(e);
+=======
+			
+>>>>>>> 757d2294c4ea3d88af28934e6368bdbe51fa8a86
 				//__Dibujar notas:
 				var SMR = new InitSMR();
 				for (var i in result){
@@ -76,11 +86,14 @@ function calculate (evt){
 				}
 				//SMR.ligadura(1,4);
 				//__
+<<<<<<< HEAD
 				
 				//GUARDAR	
 				$("svg").appendTo("body");
 				$("svg").hide();
 				
+=======
+>>>>>>> 757d2294c4ea3d88af28934e6368bdbe51fa8a86
 			} catch (error) {
 				//alert("Entrada incorrecta");
 				alert (error);

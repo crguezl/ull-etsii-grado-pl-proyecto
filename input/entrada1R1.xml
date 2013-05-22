@@ -5,6 +5,7 @@
 		<time>2</time>
 		<name>Sol</name>
 		<octave>4</octave>
+<<<<<<< HEAD
 		<puntillo/>
 	</note>
 	<note>
@@ -21,6 +22,16 @@
 	</note>
 	
 	
+=======
+		<dotted/>
+	</note>
+	
+	<note>
+		<time>4</time>
+		<name>La</name>
+		<octave>4</octave>
+	</note>
+>>>>>>> 757d2294c4ea3d88af28934e6368bdbe51fa8a86
 
 	<divisionline/>
 
@@ -31,6 +42,7 @@
 	</note>
 
 	<divisionline/>
+<<<<<<< HEAD
 	<note>
 		<time>1</time>
 		<name>Re</name>
@@ -50,5 +62,8 @@
 		<name>Fa</name>
 		<octave>6</octave>
 	</note>
+=======
+
+>>>>>>> 757d2294c4ea3d88af28934e6368bdbe51fa8a86
 </score>
 

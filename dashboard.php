@@ -6,6 +6,7 @@
 	include ("head.php");
   ?>
 
+<<<<<<< HEAD
 
 <script>
 $(document).ready( function(){
@@ -16,11 +17,25 @@ $(document).ready( function(){
 		$("#zonaSubirText").show();
 	});	
 });
+=======
+    		 <script type="text/javascript">
+	
+		  function preview(valor1){
+		 /* $('#ee').remove();
+		  $('body').load('preview.php');
+			*/	
+			
+		  }
+		  
+>>>>>>> 757d2294c4ea3d88af28934e6368bdbe51fa8a86
 
 </script>
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 757d2294c4ea3d88af28934e6368bdbe51fa8a86
 <header style="text-align:right;">
 	<a class="btn btn-large btn-primary" href= "landing.php" type="button" >Logout</a>
 </header>
@@ -67,8 +82,13 @@ $(document).ready( function(){
               
 					<button class="btn btn-success"  onclick="show();">View</button>
 					<a class="btn btn-primary" href="#">Modify</a>  
+<<<<<<< HEAD
 					<button class="btn btn-success"  onclick="playSound.play();">Play</button>
 <button class="btn btn-success"  onclick="playSound.parar();" style="background-color:red;">stop</button>							
+=======
+					<button class="btn btn-success"  onclick="play();">Play</button>
+<button class="btn btn-success"  onclick="parar();" style="background-color:red;">stop</button>							
+>>>>>>> 757d2294c4ea3d88af28934e6368bdbe51fa8a86
                      					
 		   </td>
           </tr>
@@ -78,10 +98,21 @@ $(document).ready( function(){
           
         </tbody>
       </table>
+<<<<<<< HEAD
 	  <div id = "zonaSubir" style =" text-align:center;">
 <button id = "zonaSubirButton" class="btn btn-primary" href="#">Add More "Partituras(trasnalate)"..</button>
 <input id = "zonaSubirText" type="file" />
 		</div>
+=======
+	  <div style =" text-align:center;">
+<button class="btn btn-primary" href="#">Add More "Partituras(trasnalate)"..</button>
+						<input type="file" id="fileinput" />
+<div id="container">  
+  <button class="play" onclick="">Play Music</button>
+  <pre id="debug"> </pre>
+</div> 
+</div>
+>>>>>>> 757d2294c4ea3d88af28934e6368bdbe51fa8a86
 </div>
 </div>
 
