@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 var playSound = {};
 
 playSound.stop = false;
@@ -8,16 +7,6 @@ playSound.parar = function(){playSound.stop = true;}
   playSound.play =  function () {
 playSound.stop = false;
         var noteDefs = ["Do", "Re", "Mi","Fa","Sol","La","Si"];
-=======
-
- 		var stop = false;
-		
-		function parar(){stop = true;}
-		
-    function play() {
-stop = false;
-        var noteDefs = ["A", "B", "D","E","F"];
->>>>>>> 757d2294c4ea3d88af28934e6368bdbe51fa8a86
         var scaleDefs = ["1"];
         var loading = 0;
         var notes = [];
@@ -33,21 +22,12 @@ stop = false;
             loading = noteDefs.length * scaleDefs.length;
 
             // Show preload progress
-<<<<<<< HEAD
            
             var total = loading;
             var timerLoading = setInterval(function () {
                
                 if (loading == 0) {
                   
-=======
-            var debug = document.getElementById('debug');
-            var total = loading;
-            var timerLoading = setInterval(function () {
-                debug.innerHTML = "Loaded: " + (total - loading) + "/" + total;
-                if (loading == 0) {
-                    debug.innerHTML = "Playing song!";
->>>>>>> 757d2294c4ea3d88af28934e6368bdbe51fa8a86
                     clearInterval(timerLoading);
                 }
             }, 16);
@@ -64,11 +44,7 @@ stop = false;
                 if (loading == 0)
                     playSong();
             }, false);
-<<<<<<< HEAD
      		audio.src = "./resources/sounds/"+ name +".mp3";
-=======
-     		audio.src = "./resources/sounds/piano_"+ name +".mp3";
->>>>>>> 757d2294c4ea3d88af28934e6368bdbe51fa8a86
 		    notes.push(audio);
         }
 
@@ -78,11 +54,7 @@ stop = false;
 									playNote(song[time]);
 									time++;
 									time %= song.length;
-<<<<<<< HEAD
 									if (playSound.stop == true)
-=======
-									if (stop == true)
->>>>>>> 757d2294c4ea3d88af28934e6368bdbe51fa8a86
 										clearInterval(timerId);
 								}, 300);
         }
