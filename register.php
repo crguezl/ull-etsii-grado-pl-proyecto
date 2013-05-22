@@ -4,38 +4,6 @@
 	include ("head.php");	
   ?>
   
-<<<<<<< HEAD
-=======
-
-  		 <script type="text/javascript">
-	
-		  function Registro(valor1,valor2){
-
-
-			  var parametros ={"name": valor1,"email": valor2};
-			  $.ajax({
-			 data : parametros,
-			 url : "regist.php",
-			 type :"post",
-			 
-			 beforeSend :function(){
-			 //En esta sección podemos poner un aviso de cargando. Para este ejmplo estoy poniendo el aviso dentro de un div
-			 //$("#mensajito").html("Espere...");
-			 window.alert("espera");
-			 },
-			 success:function(respuesta){
-			 //$("#mensajito").html("Datos procesados, la respuesta del PHP fue "+respuesta);
-			  window.alert("hecho");
-			 }
-			});
-			
-		  }
-		  
-
-</script>
-
-
->>>>>>> 757d2294c4ea3d88af28934e6368bdbe51fa8a86
 	<body class="body2" >
 	
 
@@ -119,11 +87,7 @@
 		  
 		
 		<div style=" text-align:center;">  
-<<<<<<< HEAD
 	<button id = "registro" class="btn btn-success"  style="width:100;">registrarme</button>
-=======
-	<button id = "e" class="btn btn-success" onclick = "Registro($('#name').val(),$('#email').val());"  style="width:100;">registrarme</button>
->>>>>>> 757d2294c4ea3d88af28934e6368bdbe51fa8a86
 
 	<div id ="result"></div>
 	</div>
